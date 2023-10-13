@@ -4,8 +4,10 @@ import com.example.demo.models.Car;
 import com.example.demo.models.DTO.CarDto;
 import com.example.demo.repos.CarDtoMapper;
 import com.example.demo.repos.CarRepo;
-import com.example.demo.repos.UserRepo;
-import com.example.demo.services.UserService;
+import com.example.demo.repos.ClientRepo;
+import com.example.demo.services.CarService;
+import com.example.demo.services.ClientService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,17 +16,15 @@ import java.util.List;
 @RequestMapping("api/v1/")
 public class CarController {
     private final CarRepo carRepo;
-    private final UserRepo userRepo;
-    private final UserService userService;
     private final CarDtoMapper carDtoMapper;
+    private final CarService carService;
 
 
 
-    public CarController(CarRepo carRepo, UserRepo userRepo, UserService userService, CarDtoMapper carDtoMapper) {
+    public CarController(CarRepo carRepo, ClientRepo clientRepo, ClientService clientService, CarDtoMapper carDtoMapper, CarService carService) {
         this.carRepo = carRepo;
-        this.userRepo = userRepo;
-        this.userService = userService;
         this.carDtoMapper = carDtoMapper;
+        this.carService = carService;
     }
 
     @GetMapping("/car/{name}")
@@ -40,16 +40,18 @@ public class CarController {
     @GetMapping("/car/country/{name}")
     public List<Car> filterCarsByCountry(@PathVariable String name){
         return carRepo.findCarByManufacturer_Country(name);
-
     }
+
 
     @PostMapping("/car/save")
     public  Car saveCar(@RequestBody Car car){
        return carRepo.save(car);
     }
 
+
+
     @GetMapping("car/id")
-    public CarDto getById(@RequestParam int id){
-        return carDtoMapper.carDTO(carRepo.findCarById(id));
+    public ResponseEntity<?> findCAr(@RequestParam Long id){
+        return carService.isCarAvailable(id);
     }
 }

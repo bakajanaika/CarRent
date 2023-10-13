@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Manufacturer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    Long id;
     String name;
     String country;
 }

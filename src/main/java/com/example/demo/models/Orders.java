@@ -23,10 +23,10 @@ public class Orders {
     @ElementCollection
     private List<LocalDate> dates;
     @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
+   
     private Client client;
     @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn
     private Car car;
 
 }

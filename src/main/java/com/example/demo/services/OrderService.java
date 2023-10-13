@@ -1,7 +1,8 @@
 package com.example.demo.services;
 
 import com.example.demo.models.Orders;
+import org.springframework.http.ResponseEntity;
 
 public interface OrderService {
-    public Orders createOrder(Orders orders);
+    public ResponseEntity<?> createOrder(Orders orders);
 }

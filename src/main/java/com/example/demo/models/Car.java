@@ -20,11 +20,12 @@ import javax.persistence.Id;
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    Long id;
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
     Manufacturer manufacturer;
     String name;
+    String imageUrl;
 
 
 

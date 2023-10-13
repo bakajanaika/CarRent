@@ -1,31 +1,31 @@
 package com.example.demo.services.impl;
 
 import com.example.demo.models.Client;
-import com.example.demo.repos.UserRepo;
-import com.example.demo.services.UserService;
+import com.example.demo.repos.ClientRepo;
+import com.example.demo.services.ClientService;
 import org.springframework.stereotype.Service;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
-public class UserServiceImpl implements UserService {
-    private final UserRepo userRepo;
+public class ClientServiceImpl implements ClientService {
+    private final ClientRepo clientRepo;
 
-    public UserServiceImpl(UserRepo userRepo) {
-        this.userRepo = userRepo;
+    public ClientServiceImpl(ClientRepo clientRepo) {
+        this.clientRepo = clientRepo;
     }
     @Override
-    public String signIn(String login, String password){
-        Client client = userRepo.findByLogin(login);
+    public String signIn(String login, String password, String email){
+        Client client = clientRepo.findByLogin(login);
         if(client == null) {
             String validation = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@#$%^&+=!]).*$";
 
             Pattern pattern = Pattern.compile(validation);
             Matcher matcher = pattern.matcher(password);
             if (matcher.matches()&&password.length()>=8) {
-                Client newClient;
-                userRepo.save(new Client(login, password));
+
+                clientRepo.save(new Client(login, password, email));
                 return "Successful registration";
             }
         }
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public boolean logIn(String login, String password) {
-        Client client = userRepo.findByLogin(login);
+        Client client = clientRepo.findByLogin(login);
         if (client == null) {
             return false;
         }
