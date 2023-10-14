@@ -47,7 +47,7 @@ public class CarServiceImpl implements CarService {
             }
         }
         if (availableDates.isEmpty()) {
-            return ResponseEntity.ok("This car is unavailable for the next 3 days.");
+            return ResponseEntity.ok("This car is unavailable for today.");
         } else {
             return ResponseEntity.ok("This car is unavailable for today. Closest dates are: " + availableDates);
         }
