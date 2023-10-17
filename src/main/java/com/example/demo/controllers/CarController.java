@@ -1,8 +1,6 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Car;
-import com.example.demo.models.DTO.CarDto;
-import com.example.demo.repos.CarDtoMapper;
 import com.example.demo.repos.CarRepo;
 import com.example.demo.repos.ClientRepo;
 import com.example.demo.services.CarService;
