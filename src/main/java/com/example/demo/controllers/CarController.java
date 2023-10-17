@@ -14,14 +14,13 @@ import java.util.List;
 @RequestMapping("api/v1/")
 public class CarController {
     private final CarRepo carRepo;
-    private final CarDtoMapper carDtoMapper;
+
     private final CarService carService;
 
 
 
-    public CarController(CarRepo carRepo, ClientRepo clientRepo, ClientService clientService, CarDtoMapper carDtoMapper, CarService carService) {
+    public CarController(CarRepo carRepo, ClientRepo clientRepo, ClientService clientService, CarService carService) {
         this.carRepo = carRepo;
-        this.carDtoMapper = carDtoMapper;
         this.carService = carService;
     }
 
