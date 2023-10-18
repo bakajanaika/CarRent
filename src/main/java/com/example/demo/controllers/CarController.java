@@ -6,6 +6,7 @@ import com.example.demo.repos.ClientRepo;
 import com.example.demo.services.CarService;
 import com.example.demo.services.ClientService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,12 +42,13 @@ public class CarController {
 
 
     @PostMapping("/car/save")
+    @PreAuthorize("hasRole('ADMIN')")
     public  Car saveCar(@RequestBody Car car){
        return carRepo.save(car);
     }
 
 
-
+    @PreAuthorize("hasRole('USER') or hasRole ('ADMIN')")
     @GetMapping("car/id")
     public ResponseEntity<?> findCAr(@RequestParam Long id){
         return carService.isCarAvailable(id);

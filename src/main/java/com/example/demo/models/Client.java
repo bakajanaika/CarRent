@@ -13,7 +13,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Table(name = "Users")
 @Data
 public class Client {
     @Id
@@ -22,6 +21,7 @@ public class Client {
     String login;
     String password;
     String userEmail;
+    String role;
 
     public Client(String login, String password, String userEmail) {
         this.login = login;
