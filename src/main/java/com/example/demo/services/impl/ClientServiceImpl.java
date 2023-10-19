@@ -24,8 +24,12 @@ public class ClientServiceImpl implements ClientService {
             Pattern pattern = Pattern.compile(validation);
             Matcher matcher = pattern.matcher(password);
             if (matcher.matches()&&password.length()>=8) {
-
-                clientRepo.save(new Client(login, password, email));
+                Client client1 = new Client();
+                client1.setLogin(login);
+                client1.setPassword(password);
+                client1.setUserEmail(email);
+                client1.setRole("USER");
+                clientRepo.save(client1);
                 return "Successful registration";
             }
         }

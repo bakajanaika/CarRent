@@ -19,10 +19,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         Client client = clientRepo.findByLogin(username);
         if (client == null) {
-            throw new UsernameNotFoundException("Пользователь не найден.");
+            throw new UsernameNotFoundException("User is not found.");
         }
         if (!client.getPassword().equals(client.getPassword())) {
-            throw new UsernameNotFoundException("Неверный пароль.");
+            throw new UsernameNotFoundException("Incorrect password.");
         }
 
         return org.springframework.security.core.userdetails.User.withUsername(client.getLogin())

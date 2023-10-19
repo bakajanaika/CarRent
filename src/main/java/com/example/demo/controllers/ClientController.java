@@ -22,8 +22,8 @@ public class ClientController {
     public Client userList(@PathVariable int id){
         return clientRepo.findAll().get(id-1);
     }
-    @PostMapping("/sign")
-    public String signIn(@RequestBody Client client){
+    @PostMapping("/signUp")
+    public String signUp(@RequestBody Client client){
        return userService.signIn(client.getLogin(), client.getPassword(), client.getUserEmail());
     }
 }
